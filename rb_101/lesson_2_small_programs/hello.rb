@@ -1,4 +1,0 @@
-Kernel.puts("hello world")
-
-
-
