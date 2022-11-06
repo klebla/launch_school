@@ -19,7 +19,7 @@ MESSAGES = YAML.load_file('mortgage_messages.yml')
 
 require 'pry'
 
-# METHODS
+# Method definitions
 def prompt(key)
   message = MESSAGES[key]
   Kernel.puts("=> #{message}")
