@@ -1,0 +1,5 @@
+loan_amount: "What's your loan amount?" # express as an integer or float
+apr: "What's the annual percentage rate (APR)?" # express as a float, decimal for monthly interest rate 
+loan_duration: "What's your loan duration in months?" # express as number of months, hence an integer
+valid_number: "Please enter a valid integer or float!" 
+valid_apr: "Please enter a valid decimal value for percentage, such as 0.05 for 5%."
