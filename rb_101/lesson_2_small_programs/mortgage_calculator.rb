@@ -35,34 +35,48 @@ end
 
 # Main loop and sub processes to obtain information accurately
 loop do
+  prompt('loan_amount')
+  
   loan_amount = nil
   loop do
-    prompt('loan_amount')
     loan_amount = gets.chomp
-    break if valid_number?(loan_amount)
-    prompt("valid_number")
+    if valid_number?(loan_amount) && loan_amount.to_f < 0 || loan_amount.empty? # example of short-circuit execution from left to right. The first one that evaluates to true will execute, the rest will be ignored. 
+      prompt("valid_number")
+    else
+      break
+    end
   end
+
+  prompt('apr')
   
   annual_interest_rate = nil
   loop do
-    prompt('apr')
     annual_interest_rate = gets.chomp
-    break if valid_float?(annual_interest_rate)
-    prompt("valid_apr")
+    if valid_float?(annual_interest_rate) && annual_interest_rate.to_f < 0 || annual_interest_rate.empty? 
+      prompt("valid_apr")
+    else
+      break
+    end
   end
 
+  prompt('loan_duration')
+  
   loan_duration_in_months = nil
   loop do
-    prompt('loan_duration')
     loan_duration_in_months = gets.chomp
-    break if valid_number?(loan_duration_in_months)
-    prompt("valid_number")
+    if valid_number?(loan_duration_in_months) && loan_duration_in_months.to_i < 0 || loan_duration_in_months.empty?
+      prompt("valid_number")
+    else
+      break
+    end
   end
 
   # Determine monthy interest rate
   monthly_interest_rate = (annual_interest_rate.to_f / 12)
 
-  monthly_payment = loan_amount.to_f * (monthly_interest_rate / (1 - (1 + monthly_interest_rate)**(-loan_duration_in_months.to_i)))
+  monthly_payment = loan_amount.to_f *
+                    (monthly_interest_rate / (1 - (1 +
+                    monthly_interest_rate)**(-loan_duration_in_months.to_i)))
 
   puts <<-MSG
   Your monthly interest rate is #{(monthly_interest_rate * 100).round(2)}%.
@@ -71,5 +85,9 @@ loop do
   Your total payment is $#{(monthly_payment * loan_duration_in_months.to_i).round(2)}.
   MSG
 
-  break
+  prompt('repeat_program')
+  answer = gets.chomp
+  break unless answer.downcase.start_with?('y')
 end
+
+prompt('goodbye')
