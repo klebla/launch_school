@@ -12,6 +12,14 @@ WINNING_COMBO = {
   'spock' => { abbreviation: 'sp', beats: ['rock', 'scissors'] }
 }
 
+# WINNING_COMBO = {
+#   'rock' => { abbreviation: 'r', beats: ['scissors', 'lizard'] },
+#   'paper' => { abbreviation: 'p', beats: ['rock', 'spock'] },
+#   'scissors' => { abbreviation: 'sc', beats: ['paper', 'lizard'] },
+#   'lizard' => { abbreviation: 'l', beats: ['spock', 'paper'] },
+#   'spock' => { abbreviation: 'sp', beats: ['rock', 'scissors'] }
+# }
+
 # Older version of hash:
 # WINNING_COMBO = {
 #   sp: ['r', 'sc', 'rock', 'scissors'],
