@@ -5,11 +5,11 @@ MESSAGES = YAML.load_file('rpsls_example.yml')
 
 VALID_OPTIONS = %w(r p sc l sp rock paper scissors spock lizard)
 WINNING_COMBO = {
-  'rock' => { abbreviation: 'r', beats: ['scissors', 'lizard'] },
-  'paper' => { abbreviation: 'p', beats: ['rock', 'spock'] },
-  'scissors' => { abbreviation: 'sc', beats: ['paper', 'lizard'] },
-  'lizard' => { abbreviation: 'l', beats: ['spock', 'paper'] },
-  'spock' => { abbreviation: 'sp', beats: ['rock', 'scissors'] }
+  ['rock','r'] => ['scissors', 'sc', 'lizard', 'l'],
+  ['paper','p'] => ['rock', 'r', 'spock', 'sp'],
+  ['scissors','sc'] => ['paper', 'p', 'lizard', 'l'],
+  ['lizard','l'] => ['spock', 'sp', 'paper', 'p'],
+  ['spock','sp'] => ['rock', 'r', 'scissors', 'sc'] 
 }
 
 # WINNING_COMBO = {
@@ -114,7 +114,7 @@ loop do
     if user_choice == computer_choice
       prompt(MESSAGES['tie'])
       puts("\n")
-    elsif WINNING_COMBO[user_choice.to_sym].include?(computer_choice)
+    elsif WINNING_COMBO[user_choice].include?(computer_choice)
       prompt(MESSAGES['win_round'])
       puts("\n")
       current_player_score = (player_score += 1)
