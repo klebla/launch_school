@@ -4,13 +4,13 @@ require 'yaml'
 MESSAGES = YAML.load_file('rpsls_example.yml')
 
 VALID_OPTIONS = %w(r p sc l sp rock paper scissors spock lizard)
-WINNING_COMBO = {
-  ['rock','r'] => ['scissors', 'sc', 'lizard', 'l'],
-  ['paper','p'] => ['rock', 'r', 'spock', 'sp'],
-  ['scissors','sc'] => ['paper', 'p', 'lizard', 'l'],
-  ['lizard','l'] => ['spock', 'sp', 'paper', 'p'],
-  ['spock','sp'] => ['rock', 'r', 'scissors', 'sc'] 
-}
+# WINNING_COMBO = {
+#   ['rock','r'] => ['scissors', 'sc', 'lizard', 'l'],
+#   ['paper','p'] => ['rock', 'r', 'spock', 'sp'],
+#   ['scissors','sc'] => ['paper', 'p', 'lizard', 'l'],
+#   ['lizard','l'] => ['spock', 'sp', 'paper', 'p'],
+#   ['spock','sp'] => ['rock', 'r', 'scissors', 'sc'] 
+# }
 
 # WINNING_COMBO = {
 #   'rock' => { abbreviation: 'r', beats: ['scissors', 'lizard'] },
@@ -20,27 +20,33 @@ WINNING_COMBO = {
 #   'spock' => { abbreviation: 'sp', beats: ['rock', 'scissors'] }
 # }
 
-# Older version of hash:
-# WINNING_COMBO = {
-#   sp: ['r', 'sc', 'rock', 'scissors'],
-#   spock: ['r', 'sc', 'rock', 'scissors']
-#   insert others here...
-# }
+WINNING_COMBO = {
+  sp: ['r', 'sc', 'rock', 'scissors'],
+  spock: ['r', 'sc', 'rock', 'scissors'],
+  sc: ['paper', 'p', 'lizard', 'l'],
+  scissors: ['paper', 'p', 'lizard', 'l'],
+  r: ['scissors', 'sc', 'lizard', 'l'],
+  rock: ['scissors', 'sc', 'lizard', 'l'],
+  l: ['spock', 'sp', 'paper', 'p'],
+  lizard: ['spock', 'sp', 'paper', 'p'],
+  p: ['rock', 'r', 'spock', 'sp'],
+  paper: ['rock', 'r', 'spock', 'sp']
+}
 
 def prompt(message)
   puts("=> #{message}")
 end
 
 def operation_to_message(choice)
-  if choice == 'r' || choice == 'rock'
+  if %w(rock r).include?(choice)
     'rock'
-  elsif choice == 'p' || choice == 'paper'
+  elsif %w(p paper).include?(choice)
     'paper'
-  elsif choice == 'sc' || choice == 'scissors'
+  elsif %w(sc scissors).include?(choice)
     'scissors'
-  elsif choice == 'sp' || choice == 'spock'
+  elsif %w(sp spock).include?(choice)
     'spock'
-  elsif choice == "l" || choice == "lizard"
+  elsif %w(l lizard).include?(choice)
     'lizard'
   end
 end
@@ -114,7 +120,7 @@ loop do
     if user_choice == computer_choice
       prompt(MESSAGES['tie'])
       puts("\n")
-    elsif WINNING_COMBO[user_choice].include?(computer_choice)
+    elsif WINNING_COMBO[user_choice.to_sym].include?(computer_choice)
       prompt(MESSAGES['win_round'])
       puts("\n")
       current_player_score = (player_score += 1)
