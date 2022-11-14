@@ -9,7 +9,7 @@ VALID_OPTIONS = %w(r p sc l sp rock paper scissors spock lizard)
 #   ['paper','p'] => ['rock', 'r', 'spock', 'sp'],
 #   ['scissors','sc'] => ['paper', 'p', 'lizard', 'l'],
 #   ['lizard','l'] => ['spock', 'sp', 'paper', 'p'],
-#   ['spock','sp'] => ['rock', 'r', 'scissors', 'sc'] 
+#   ['spock','sp'] => ['rock', 'r', 'scissors', 'sc']
 # }
 
 # WINNING_COMBO = {
