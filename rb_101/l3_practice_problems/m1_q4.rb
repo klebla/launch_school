@@ -15,4 +15,4 @@ end
 
 # returns new object "buffer"
 # side-effect: none 
-# this is the better of the two, it returns and has no side-effect 
+# this is the better of the two, it returns an object and has no side-effect 
