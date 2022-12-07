@@ -24,3 +24,8 @@ def digit_list(number)
   end
   digits
 end
+
+# LS solution (idiomatic ruby)
+def digit_list(number)
+  number.to_s.chars.map(&:to_i)
+end
